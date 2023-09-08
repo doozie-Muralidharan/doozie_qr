@@ -1,0 +1,38 @@
+#notifDiv {
+    z-index: 10000;
+    display: none;
+    background: green;
+    font-weight: 450;
+    width: 350px;
+    position: fixed;
+    top: 80%;
+    left: 5%;
+    color: white;
+    padding: 5px 20px
+}
+
+thead {
+    background-image: linear-gradient(310deg, #CED4DA 0%, #EBEFF4 100%);
+    font-size: 20px;
+}
+
+.font-20 {
+    font-size: 20px !important;
+}
+.font-18 {
+    font-size: 18px !important;
+}
+
+li.nav-item a span {
+    font-size: 21px;
+
+    font-weight: 600;
+}
+.card-header.pb-0 h6 {
+    font-size: 30px;
+}
+.slow .toggle-group {
+    transition: left 0.7s;
+    -webkit-transition: left 0.7s;
+}
+

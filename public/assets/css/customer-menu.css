@@ -1,0 +1,58 @@
+.card {
+    border: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+    margin: 4px 0;
+}
+
+.card-dish {
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+    padding: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.menu .card-img {
+    width: auto;
+    height: 55px;
+    /* border-radius: 50%; */
+}
+
+
+.card-rate {
+    color: rgb(220, 151, 22);
+}
+
+@media (max-width: 760px) {
+    .menu {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tab-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tab-content {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
