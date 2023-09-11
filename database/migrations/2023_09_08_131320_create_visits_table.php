@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateVisitsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVisitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_visits', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('method')->nullable();
             $table->mediumText('request')->nullable();
@@ -25,10 +25,15 @@ class CreateVisitsTable extends Migration
             $table->text('device')->nullable();
             $table->text('platform')->nullable();
             $table->text('browser')->nullable();
-            $table->ipAddress('ip')->nullable();
-            $table->nullableMorphs('visitable'); // object model
-            $table->nullableMorphs('visitor'); // subject model
+            $table->string('ip', 45)->nullable();
+            $table->string('visitable_type')->nullable();
+            $table->unsignedBigInteger('visitable_id')->nullable();
+            $table->string('visitor_type')->nullable();
+            $table->unsignedBigInteger('visitor_id')->nullable();
             $table->timestamps();
+
+            $table->index(['visitable_type', 'visitable_id'], 'menu_visits_visitable_type_visitable_id_index');
+            $table->index(['visitor_type', 'visitor_id'], 'menu_visits_visitor_type_visitor_id_index');
         });
     }
 
@@ -39,6 +44,6 @@ class CreateVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('visitor.table_name'));
+        Schema::dropIfExists('visits');
     }
-}
+};

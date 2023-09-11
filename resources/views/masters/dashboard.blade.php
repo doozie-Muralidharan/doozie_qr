@@ -26,7 +26,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Unique Visits</p>
                                 <h5 class="font-weight-bolder">
-                                    {{$unique_visits}}
+                                    {{-- {{$unique_visits}} --}}
                                 </h5>
                                 <!-- <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+55%</span> increase
@@ -51,7 +51,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Visits</p>
                                 <h5 class="font-weight-bolder">
-                                    {{$total_visits}}
+                                    {{-- {{$total_visits}} --}}
                                 </h5>
                                 <p class="mb-0">
                                     <!-- <span class="text-success text-sm font-weight-bolder">+5%</span> last month -->

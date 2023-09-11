@@ -14,6 +14,8 @@ use App\Http\Controllers\QRDetailsController;
 use App\Http\Controllers\FoodDetailController;
 use App\Http\Controllers\MenuDetailsController;
 use App\Http\Controllers\CustomerMenuController;
+use App\Http\Controllers\DocumentTypeController;
+use App\Http\Controllers\PackageController;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -71,6 +73,19 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('food_details', [FoodDetailController::class, 'index']);
     Route::get('food_menu', [FoodMenuController::class, 'index']);
+
+    Route::get('document_type', [DocumentTypeController::class, 'index'])->name('document_type.index');
+    Route::get('document_type/create', [DocumentTypeController::class, 'create'])->name('document_type.create');
+    Route::post('document_type/create', [DocumentTypeController::class, 'store'])->name('document_type.store');
+    Route::get('document_type/edit/{id}', [DocumentTypeController::class, 'edit'])->name('document_type.edit');
+    Route::post('document_type/update/{id}', [DocumentTypeController::class, 'update'])->name('document_type.update');
+
+    Route::get('packages', [PackageController::class, 'index'])->name('packages.index');
+    Route::get('packages/create', [PackageController::class, 'create'])->name('packages.create');
+    Route::post('packages/store', [PackageController::class, 'store'])->name('packages.store');
+    Route::get('packages/edit/{id}', [PackageController::class, 'edit'])->name('packages.edit');
+    Route::post('packages/update/{id}', [PackageController::class, 'update'])->name('packages.update');
+
 
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });

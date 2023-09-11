@@ -22,7 +22,7 @@
                                         <th class="    font-weight-bolder ">
                                             Logo</th>
                                         <th class="    font-weight-bolder ">
-                                            Restaurent Name</th>
+                                            Company Name</th>
                                         <th class="    font-weight-bolder  ps-2">
                                             Display Name</th>
 
@@ -64,7 +64,7 @@
                                         </td>
                                         <td>
                                             <div class="px-4 py-1 ">
-                                                <p class="font-20 font-weight-bold mb-0">{{ $customer->restaurant_name }}</p>
+                                                <p class="font-20 font-weight-bold mb-0">{{ $customer->company_name }}</p>
                                             </div>
                                         </td>
                                         <td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Package;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('masters.customer.create');
+        $packages = Package::all();
+        return view('masters.customer.create')->with('packages',$packages);
     }
 
     /**
@@ -41,38 +43,34 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'restaurant_name' => 'required',
+            'company_name' => 'required',
             'display_name' => 'required',
 
-            //'contact_no_for_webpage' => 'required',
-            'contact_type' => 'required',
-            'contact_type_value' => 'required',
 
 
 
         ]);
         //  DD($request->all());
         $customer = new Customer;
-        $customer->restaurant_name = $request['restaurant_name'];
-        $customer->url_path = Str::slug($request['restaurant_name']);
+        $customer->company_name = $request['company_name'];
+        $customer->url_path = Str::slug($request['company_name']);
         $customer->display_name = $request['display_name'];
-        $customer->type = $request['type'];
-        $customer->link_type = $request['link_type'];
-        $customer->external_link = $request['external_link'];
-        $customer->contact_type = $request['contact_type'];
-        $customer->contact_type_value = $request['contact_type_value'];
+        $customer->email = $request['email'];
+        $customer->gst_number = $request['gst_number'];
+        $customer->address = $request['address'];
+        $customer->website = $request['website'];
+        $customer->package_id = $request['package_id'];
+
         if ($request->customer_logo) {
             $fileName1 = time() . '_' . $request->customer_logo->getClientOriginalName();
             $request->customer_logo->move('uploads/customer_logo/', $fileName1);
             $customer->logo_path = $fileName1;
         }
-        $customer->contact_no_for_webpage = $request['contact_no_for_webpage'];
         $customer->contact_no = $request['contact_no'];
         $customer->facebook_link = $request['facebook_link'];
         $customer->instagram_link = $request['instagram_link'];
         $customer->zomato = $request['zomato'];
 
-        $customer->website = $request['website'];
 
         $customer->save();
         toastr()->success('Customer added successfully');
@@ -99,7 +97,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('masters.customer.edit')->with('customer', $customer);
+        $packages = Package::all();
+        return view('masters.customer.edit')->with('customer', $customer)->with('packages',$packages);
     }
 
     /**
@@ -113,20 +112,14 @@ class CustomerController extends Controller
     {
 
         request()->validate([
-            'restaurant_name' => 'required',
+            'company_name' => 'required',
             'display_name' => 'required',
-
-            //'contact_no_for_webpage' => 'required',
-            'contact_type' => 'required',
-            'contact_type_value' => 'required',
-
-            // 'contact_no_for_webpage' => 'required'
 
         ]);
 
         $customer =  Customer::find($customer->id);
-        $customer->restaurant_name = $request['restaurant_name'];
-        $customer->url_path = Str::slug($request['restaurant_name']);
+        $customer->company_name = $request['company_name'];
+        $customer->url_path = Str::slug($request['company_name']);
         $customer->display_name = $request['display_name'];
         //  hidden_customer_logo
         if ($request->customer_logo == "") {
@@ -136,18 +129,16 @@ class CustomerController extends Controller
             $request->customer_logo->move('uploads/customer_logo/', $fileName1);
             $customer->logo_path = $fileName1;
         }
-        $customer->contact_no_for_webpage = $request['contact_no_for_webpage'];
         $customer->contact_no = $request['contact_no'];
         $customer->website = $request['website'];
         $customer->facebook_link = $request['facebook_link'];
         $customer->instagram_link = $request['instagram_link'];
         $customer->zomato = $request['zomato'];
-        $customer->contact_type = $request['contact_type'];
-        $customer->contact_type_value = $request['contact_type_value'];
 
-        $customer->type = $request['type'];
-        $customer->link_type = $request['link_type'];
-        $customer->external_link = $request['external_link'];
+
+        $customer->email = $request['email'];
+        $customer->gst_number = $request['gst_number'];
+        $customer->address = $request['address'];
 
         $customer->save();
         toastr()->success('Category updated successfully');

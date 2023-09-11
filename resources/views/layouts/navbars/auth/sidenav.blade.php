@@ -48,6 +48,16 @@
                     <span class="nav-link-text ms-1">QR Code Details</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ str_contains(request()->url(), 'user-management') == true ? 'active' : '' }}" href="/document_type">
+                    <span class="nav-link-text ms-1">Document Type</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ str_contains(request()->url(), 'user-management') == true ? 'active' : '' }}" href="/packages">
+                    <span class="nav-link-text ms-1">Package</span>
+                </a>
+            </li>
 
 
         </ul>
