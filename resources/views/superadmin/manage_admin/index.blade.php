@@ -1,15 +1,15 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Packages'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Document Types'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card  mb-4">
                     <div class="card-header pb-0">
-                        <h6>Packages</h6>
+                        <h6>Manage Admin</h6>
                         <div class="d-flex justify-content-end">
-                            <span><a href="{{ route('packages.create') }}"
+                            <span><a href="{{ route('manage_admin.create') }}"
                                     class=" btn bg-gradient-info btn-sm">Add</a></span>
                         </div>
                     </div>
@@ -20,12 +20,11 @@
                                     <th class="fw-bolder ">Sr </th>
                                     <th class="fw-bolder ">Action</th>
                                     <th class="fw-bolder "> Name </th>
-                                    <th class="fw-bolder "> Number of Codes
-                                    </th>
+                                    <th class="fw-bolder "> Email</th>
                                 </thead>
                                 <tbody>
                                     @php $sr = 1; @endphp
-                                    @foreach ($packages as $row)
+                                    @foreach ($manage_admin as $row)
                                         <tr>
                                             <td>
                                                 <div class="px-4 py-1">
@@ -33,21 +32,41 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="px-4 py-1 ">
-                                                    <a href="{{ route('packages.edit', $row->id) }}"
+                                                <div class="px-4 py-1 d-flex gap-2">
+                                                    <a href="{{ route('manage_admin.edit', $row->id) }}"
                                                         class="btn btn-info " title="Edit"><i
                                                             class="fa-regular fa-pen-to-square"></i></a>
 
+
+                                                    @if ($row->deleted_at == null)
+                                                        <form method="POST"
+                                                            action="{{ route('manage_admin.deactivate', $row->id) }}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success"
+                                                                title="Deactivate"><i class="fa fa-power-off"
+                                                                    aria-hidden="true"></i></button>
+                                                        </form>
+                                                    @else
+                                                        <form method="POST"
+                                                            action="{{ route('manage_admin.activate', $row->id) }}">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger"
+                                                                title="Activate"><i class="fa fa-power-off"
+                                                                    aria-hidden="true"></i></button>
+                                                        </form>
+                                                    @endif
+                                                </div>
+
+
+                                            </td>
+                                            <td>
+                                                <div class="px-4 py-1">
+                                                    <p class="fw-bold font-20 mb-0">{{ $row->username }}</p>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="px-4 py-1">
-                                                    <p class="fw-bold font-20 mb-0">{{ $row->name }}</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="px-4 py-1">
-                                                    <p class="fw-bold font-20 mb-0">{{ $row->number_of_codes }}</p>
+                                                    <p class="fw-bold font-20 mb-0">{{ $row->email }}</p>
                                                 </div>
                                             </td>
 

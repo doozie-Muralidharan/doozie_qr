@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Package;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Prgayman\QRCodeMonkey\QRCode\CustomeGenerate;
@@ -73,6 +75,18 @@ class CustomerController extends Controller
 
 
         $customer->save();
+
+        $password = empty($request['password']) ? Str::random(6) : $request['password'];
+        $hashedPassword = Hash::make($password);
+
+        $user = new User;
+        $user->username = $customer->company_name;
+        $user->email = $customer->email;
+        $user->customer_id = $customer->id;
+        $user->role = 'customer';
+        $user->password = $hashedPassword;
+
+        $user->save();
         toastr()->success('Customer added successfully');
         //DD($request->all());
         return redirect()->route('customers.index');
@@ -141,8 +155,10 @@ class CustomerController extends Controller
         $customer->address = $request['address'];
 
         $customer->save();
-        toastr()->success('Category updated successfully');
-        return redirect('customer');
+
+
+        toastr()->success('Customer updated successfully');
+        return redirect()->route('customers.index');
     }
 
     public function changeStatus(Request $request)

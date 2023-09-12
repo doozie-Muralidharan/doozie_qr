@@ -1,45 +1,55 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Edit Package'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Create Package'])
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-10">
                 <div class="card  mb-4">
                     <div class="card-header pb-0">
-                        <h6>Edit Package</h6>
+                        <h6>Update Admin</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
 
-                        <form action="{{ route('packages.update',$package->id) }}" method="POST" class="form-row">
+                        <form action="{{ route('manage_admin.update', $admin->id) }}" method="POST" class="form-row">
                             @csrf
                             <div class="row px-4">
                                 <div class="form-group col-md-6">
-                                    <label for="" class=" form-label font-20 fw-bold"> Name*</label>
-                                    <input type="text" name="name" value="{{ $package->name }}"
+                                    <label for="first_name" class=" form-label font-20 fw-bold"> First Name*</label>
+                                    <input type="text" name="first_name" value="{{ $admin->firstname }}"
                                         class="form-control shadow">
-                                    @error('name')
+                                    @error('first_name')
                                         <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="number_of_codes" class=" form-label font-20 fw-bold">Number of Codes*</label>\
-                                    <input type="text" class="form-control shadow" value="{{ $package->number_of_codes }}" name="number_of_codes" id="number_of_codes">
-                                    @error('number_of_codes')
-                                        <p class="text-danger    ">{{ $message }}</p>
+                                    <label for="last_name" class=" form-label font-20 fw-bold"> Last Name*</label>
+                                    <input type="text" name="last_name" value="{{ $admin->lastname }}"
+                                        class="form-control shadow">
+                                    @error('last_name')
+                                        <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="cost" class=" form-label font-20 fw-bold">Cost*</label>\
-                                    <input type="text" class="form-control shadow" name="cost" id="cost" value="{{ $package->cost }}">
-                                    @error('cost')
-                                        <p class="text-danger    ">{{ $message }}</p>
+                                    <label for="username" class=" form-label font-20 fw-bold"> Username*</label>
+                                    <input type="text" name="username" value="{{ $admin->username }}"
+                                        class="form-control shadow">
+                                    @error('username')
+                                        <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="monthly_cap" class=" form-label font-20 fw-bold">Monthly Cap*</label>\
-                                    <input type="text" class="form-control shadow" name="monthly_cap" id="monthly_cap" value="{{ $package->monthly_cap }}">
-                                    @error('monthly_cap')
+                                    <label for="email" class=" form-label font-20 fw-bold">Email*</label>\
+                                    <input type="email" class="form-control shadow" name="email" id="email" value="{{ $admin->email }}">
+                                    @error('email')
+                                        <p class="text-danger    ">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="password" class=" form-label font-20 fw-bold">Change Paasowrd</label>\
+                                    <input type="text" class="form-control shadow" name="password" id="password">
+                                    @error('password')
                                         <p class="text-danger    ">{{ $message }}</p>
                                     @enderror
                                 </div>

@@ -7,39 +7,49 @@
             <div class="col-md-10">
                 <div class="card  mb-4">
                     <div class="card-header pb-0">
-                        <h6>Add Package</h6>
+                        <h6>Add Admin</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
 
-                        <form action="{{ route('packages.store') }}" method="POST" class="form-row">
+                        <form action="{{ route('manage_admin.store') }}" method="POST" class="form-row">
                             @csrf
                             <div class="row px-4">
                                 <div class="form-group col-md-6">
-                                    <label for="" class=" form-label font-20 fw-bold"> Name*</label>
-                                    <input type="text" name="name" value="{{ old('name') }}"
+                                    <label for="first_name" class=" form-label font-20 fw-bold"> First Name*</label>
+                                    <input type="text" name="first_name" value="{{ old('first_name') }}"
                                         class="form-control shadow">
-                                    @error('name')
+                                    @error('first_name')
                                         <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="number_of_codes" class=" form-label font-20 fw-bold">Number of Codes*</label>\
-                                    <input type="text" class="form-control shadow" name="number_of_codes" id="number_of_codes">
-                                    @error('number_of_codes')
-                                        <p class="text-danger    ">{{ $message }}</p>
+                                    <label for="last_name" class=" form-label font-20 fw-bold"> Last Name*</label>
+                                    <input type="text" name="last_name" value="{{ old('last_name') }}"
+                                        class="form-control shadow">
+                                    @error('last_name')
+                                        <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="cost" class=" form-label font-20 fw-bold">Cost*</label>\
-                                    <input type="text" class="form-control shadow" name="cost" id="cost">
-                                    @error('cost')
-                                        <p class="text-danger    ">{{ $message }}</p>
+                                    <label for="username" class=" form-label font-20 fw-bold"> Username*</label>
+                                    <input type="text" name="username" value="{{ old('username') }}"
+                                        class="form-control shadow">
+                                    @error('username')
+                                        <p class="text-danger  ">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="monthly_cap" class=" form-label font-20 fw-bold">Montly Cap*</label>\
-                                    <input type="text" class="form-control shadow" name="monthly_cap" id="monthly_cap">
-                                    @error('monthly_cap')
+                                    <label for="email" class=" form-label font-20 fw-bold">Email*</label>\
+                                    <input type="email" class="form-control shadow" name="email" id="email">
+                                    @error('email')
+                                        <p class="text-danger    ">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="password" class=" form-label font-20 fw-bold"> Paasowrd</label>\
+                                    <input type="text" class="form-control shadow" name="password" id="password">
+                                    @error('password')
                                         <p class="text-danger    ">{{ $message }}</p>
                                     @enderror
                                 </div>

@@ -29,6 +29,13 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="password" class=" form-label font-20 fw-bold">Password</label>
+                                <input type="password" name="password" class="form-control shadow" value="{{ old('password') }}">
+                                {{-- @error('password')
+                                <p class="text-danger mt-1 mb-0 text-sm">{{ $message }}</p>
+                                @enderror --}}
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="package_id" class="form-label font-20 fw-bold">Package*</label>
                                 <select type="package_id" name="package_id" class="form-select shadow" value="{{ old('package_id') }}">
                                     <option value="">Choose Package</option>
