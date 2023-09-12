@@ -16,7 +16,6 @@ return [
 
 
     //name of the table which visit records should save in
-    'table_name' =>  'menu_visits',
 
     /*
     |--------------------------------------------------------------------------

@@ -6,14 +6,11 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\QRDetailsController;
 use App\Http\Controllers\FoodDetailController;
-use App\Http\Controllers\MenuDetailsController;
 use App\Http\Controllers\CustomerMenuController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\PackageController;
@@ -41,17 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('customer/inactive/{id}', [CustomerController::class, 'inactive'])->name('customer.inactive');
     Route::get('customer/delete/{id}', [CustomerController::class, 'destroy'])->name('customers.delete');
 
-    Route::get('menu_details', [MenuDetailsController::class, 'index'])->name('menu_details.index');
-    Route::post('menu_details', [MenuDetailsController::class, 'store'])->name('menu_details.store');
-    Route::get('menu_details_show/{id}', [MenuDetailsController::class, 'show'])->name('menu_details.show');
-    Route::get('menu_details_edit/{customer_id}', [MenuDetailsController::class, 'edit'])->name('menu_details.edit');
-    Route::post('menu_details_update/{customer_id}', [MenuDetailsController::class, 'update'])->name('menu_details.update');
-    Route::post('menu-details_currency/{id}', [MenuDetailsController::class, 'currency'])->name('menu_details.currency');
-    Route::get('menu-details_delete/{id}', [MenuDetailsController::class, 'destroy'])->name('menu_details.destroy');
-    Route::post('menu-details_edit_item/{id}', [MenuDetailsController::class, 'updateItem'])->name('menu_details.edit.item');
-    Route::post('import_excel', [MenuDetailsController::class, 'importExcel'])->name('menu_details.import');
-    Route::get('export_excel', [MenuDetailsController::class, 'exportExcel'])->name('menu_details.exportExcel');
-    Route::get('deleteAll', [MenuDetailsController::class, 'destroyAll'])->name('menu_details.deleteAll');
+
 
     Route::get('category_details', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('category_details_create', [CategoryController::class, 'create'])->name('categories.create');
@@ -60,12 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('category_details_edit-{category}', [CategoryController::class, 'update'])->name('categories.update');
     Route::get('category/deactivate/{id}', [CategoryController::class, 'deactivate'])->name('categories.deactivate');
 
-    Route::get('cuisine', [CuisineController::class, 'index'])->name('cuisines.index');
-    Route::get('cuisine_create', [CuisineController::class, 'create']);
-    Route::post('cuisine_create', [CuisineController::class, 'store'])->name('cuisines.store');
-    Route::get('cuisine_edit-{cuisine}', [CuisineController::class, 'edit'])->name('cuisines.edit');
-    Route::post('cuisine_edit-{id}', [CuisineController::class, 'update'])->name('cuisines.update');
-    Route::get('cuisine/deactivate/{id}', [CuisineController::class, 'deactivate'])->name('cuisines.deactivate');
+
 
 
     Route::get('food_details', [FoodDetailController::class, 'index']);
