@@ -15,7 +15,7 @@
                             @csrf
                             <div class="row px-4">
                                 <div class="form-group p-2 col-md-8">
-                                    <label for="" class=" form-label font-20 fw-bold">Cuisine Name*</label>
+                                    <label for="" class=" form-label font-20 fw-bold">Document Name*</label>
                                     <input required type="text" name="name" value="{{ $document->name }}"
                                         class="form-control shadow">
                                     @error('name')
